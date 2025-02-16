@@ -7,7 +7,7 @@ const App = () => {
   const locomotiveScroll = new LocomotiveScroll();
 
   return (
-    <div className='w-full overflow-hidden '>
+    <div className='w-full overflow-hidden h-[200vh] '>
       <Homepage/>
     </div>
     

@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roobert1";
+}
+@font-face {
+  font-family: "Roobert1";
+  src: url("./fonts/Roobert-Regular.woff2");
+}
+
+@font-face {
+  font-family: "Roobert2";
+  src: url("./fonts/Roobert-Medium.woff2");
+}
+
+@font-face {
+  font-family: "Zentry";
+  src: url("./fonts/ZENTRY-Regular.woff2");
+}
+
+
