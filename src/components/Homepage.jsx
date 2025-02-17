@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { Tilt } from "react-tilt";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
-
 gsap.registerPlugin(ScrollTrigger);
 
 const Homepage = () => {
@@ -75,7 +74,7 @@ const Homepage = () => {
 
         {/* Hero Section */}
         <div className="hero-content relative w-full flex flex-col justify-between items-center h-[80vh]">
-          <Tilt options={tiltOptions} className="box absolute z-10 w-[30vw] h-[40vh] top-1/2 overflow-hidden transition-all duration-300 ease-in-out">
+          <Tilt options={tiltOptions} className="box absolute z-10 w-44 h-44 lg:w-[30vw] lg:h-[40vh] top-1/2 overflow-hidden transition-all duration-300 ease-in-out">
             <video onClick={handleVideoChange} className="w-full h-full object-cover" src={videos.current[
               (videoIndex + 1) % videos.current.length
             ].url} autoPlay loop muted></video>
