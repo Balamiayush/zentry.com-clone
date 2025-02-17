@@ -1,7 +1,16 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
-
-const Navbar = () => {
+import Button from "./Button";
+import music1 from "../assets/music_main.mp3"
+const Navbar = ({products, whitepaper}) => {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const audioRef = useRef(new Audio(music1));
+  const [isPlaying, setIsPlaying] = useState(false);
+  const playSound = () => {
+    audioRef.current.currentTime = 0; // Reset the sound to the start
+    audioRef.current.play(); // Play the sound
+    setIsPlaying(true)
+  };
   useEffect(()=>{
     window.addEventListener("scroll",()=>{
       console.log(window.scrollY)
@@ -16,7 +25,6 @@ const Navbar = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const navRef = useRef(null);
 
-  // Function to handle hover effects
   const handleMouseEnter = useCallback((e, index) => {
     if (!navRef.current) return;
     const { left, width } = e.target.getBoundingClientRect();
@@ -43,13 +51,13 @@ const Navbar = () => {
           <use href="#a" />
         </svg>
         <div className="flex items-center gap-5">
-          <a className="bg-white text-[10px] text-black px-5 py-2 rounded-full" href="#">PRODUCTS</a>
-          <a className="bg-white text-[10px] text-black px-5 py-2 rounded-full" href="#">WHITEPAPER</a>
+          <Button text="PRODUCTS" href="#" />
+          <Button text="WHITEPAPER" href="#" />
         </div>
       </div>
 
       {/* Navbar Right */}
-      <div ref={navRef} className="relative flex items-center gap-3 z-10">
+      <div ref={navRef} className="relative flex items-center   z-10">
         {["Nexus", "Vault", "Prologue", "About", "Contact"].map((item, index) => (
           <a
             key={index}
@@ -65,12 +73,44 @@ const Navbar = () => {
             {item}
           </a>
         ))}
+        <div
+      
+      className="box w-10 h-10 cursor-pointer flex items-center justify-center gap-1"
+      onClick={() => {
+        setIsAnimating(!isAnimating)
+        setIsPlaying(!isPlaying)
+        if(isPlaying){
+          audioRef.current.pause()
+        }else{
+          audioRef.current.play()
+        }
+
+
+      }} 
+    >
+      {[1, 2, 3, 4, 5].map((item, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 1, height: 5 }}
+          animate={isAnimating ? { opacity: 1, height: 25 } : { opacity: 1, height: 5 }}
+          transition={{
+            delay: index * 0.2,
+            ease: "easeInOut",
+            duration: 0.6,
+            repeat: isAnimating ? Infinity : 0, // Only repeat when active
+            repeatType: "reverse",
+          }}
+          className="w-2 bg-white rounded-full"
+        ></motion.div>
+      ))}
+    </div>
         <motion.div
           animate={position}
           transition={{ type: "spring", stiffness: 200, damping: 20 }}
           className="absolute z-[-1] top-1/2 -translate-y-1/2  rounded-[25px] bg-white"
         />
       </div>
+      
     </nav>
   );
 };
