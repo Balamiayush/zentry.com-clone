@@ -1,57 +1,52 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Tilt } from "react-tilt";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Tiltedimg from "../components/Tiltedimg";
+
 gsap.registerPlugin(ScrollTrigger);
+
 const Page3 = () => {
+  const sectionRef = useRef(null);
+  const imgRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
+
   useGSAP(() => {
-    const clipAnimation = gsap.timeline({
-      ease: "power2.out",
+    if (!sectionRef.current || !imgRef.current) return;
+
+    const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".page3",
-        top: "center center",
-        end: "+=800px center",
-        markers: true,
-        pin: true,
-        pinSpacing: true,
-        scrub: 0.5,
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "bottom top", // End earlier for a smoother effect
+        scrub: 1,
       },
     });
-    clipAnimation.to(".mask-clip-path", {
+
+    // Increase width and height on scroll
+    tl.to(imgRef.current, {
       width: "100vw",
       height: "100vh",
-      borderRadius: 0,
+      duration: 1.5,
+      ease: "power2.out",
     });
-  });
 
-  const tiltOptions = {
-    max: 30,
-    perspective: 2000,
-    scale: 1.1,
-    speed: 100,
-    transition: false,
-    axis: null,
-    reset: true,
-    easing: "cubic-bezier(0.23, 1, 0.320, 1)",
-  };
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
+  }, { scope: sectionRef });
 
   return (
     <div
       ref={sectionRef}
-      className=" h-screen w-full  flex flex-col items-center  page3 mt-5 relative  "
+      className="h-screen w-full flex flex-col items-center page3 mt-5 relative"
     >
       <div
         id="box2"
-        className=" uppercase text-[10px]  flex flex-col justify-center items-center h-[50vh]   "
+        className="uppercase text-[10px] flex flex-col justify-center items-center h-[50vh]"
       >
-        <p className=" lg:text-[0.7rem] ">WELCOME TO ZENTRY</p>
+        <p className="lg:text-[0.7rem]">WELCOME TO ZENTRY</p>
         <motion.div
           initial={{
-            x: "-100%", // Start from the left
+            x: "-100%",
             opacity: 0,
             skewY: -20,
           }}
@@ -64,25 +59,27 @@ const Page3 = () => {
             duration: 1.5,
             ease: "easeInOut",
           }}
-          className="text-[3.5rem] lg:text-[6rem] font-bold leading-none text-center  "
+          className="text-[3.5rem] lg:text-[6rem] font-bold leading-none text-center"
         >
           <h1 style={{ fontFamily: "Zentry" }} className="overflow-hidden">
             discover the world's largest shared advantage
           </h1>
         </motion.div>
       </div>
-      <div className="h-dvh w-screen   ">
-        <Tilt
-          options={tiltOptions}
-          className="mask-clip-path about-image w-52  h-60 m-auto"
-        >
-          <img
-            className="w-full h-full object-cover"
-            src="https://zentry.com/export/images/home/intro/custom-home-intro-desktop@lg.webp"
-            alt=""
-          />
-        </Tilt>
-      </div>
+
+      {/* Tilted Image Component with GSAP animation */}
+      <Tiltedimg
+        ref={imgRef}
+        imageSrc="https://zentry.com/export/images/home/intro/custom-home-intro-desktop@lg.webp"
+        altText="Kendrick Lamar - GNX Album Cover"
+        captionText="Kendrick Lamar - GNX"
+        imageHeight="10vh"  // Starts small
+        imageWidth="10vw"   // Starts small
+        rotateAmplitude={1}
+        showMobileWarning={false}
+        showTooltip={false}
+        displayOverlayContent={false}
+      />
     </div>
   );
 };

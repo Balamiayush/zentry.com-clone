@@ -5,7 +5,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Roobert1";
 }
 @font-face {
   font-family: "Roobert1";
@@ -22,3 +21,30 @@
   src: url("./fonts/ZENTRY-Regular.woff2");
 }
 
+/* .griddiv{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+   "a a a a"
+   "a a a a"
+   "a a a a"
+   "a a a a"
+}
+
+.g1{
+  
+  grid-area: a;
+}
+
+.g2{
+  grid-area: b;
+}
+
+.g3{
+  grid-area: c;
+}
+
+.g4{
+  grid-area: d;
+} */
