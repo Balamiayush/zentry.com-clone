@@ -5,6 +5,8 @@ import Page3 from './pages/Page3';
 import Page4 from './pages/Page4';
 import Features from './components/Features';
 import Story from './components/Story';
+import Footer from './components/Footer';
+import Contact from './components/Contact';
 
 const App = () => {
 
@@ -16,7 +18,8 @@ const App = () => {
       <Page3/>
       <Features/>
       <Story/>
-      <Page4/>
+      <Contact/>  
+      <Footer/>
     </div>
     
   )
