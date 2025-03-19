@@ -60,7 +60,7 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen hero relative z-[10] bg-gray-900">
+    <div className="w-full h-screen hero relative z-[10] ">
       {/* Background Video */}
       <div ref={videoRef} className="absolute top-0 left-0 w-full h-full overflow-hidden">
         <video key={videos[videoIndex].id} src={videos[videoIndex].url} autoPlay loop muted className="object-cover w-full h-full"></video>

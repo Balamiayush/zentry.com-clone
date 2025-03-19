@@ -40,7 +40,7 @@ const Navbar = ({products, whitepaper}) => {
   }, []);
 
   return (
-    <nav className="w-full  h-20 px-10 navright transition-all duration-300  z-50 text-white flex justify-between items-center ">
+    <nav className="w-full  h-20 px-10 fixed navright transition-all duration-300  z-50 text-white flex justify-between items-center ">
       {/* Left Section */}
       <div className="flex items-center gap-5">
         <svg className="w-10 h-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 661 660">
