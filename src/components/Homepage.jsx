@@ -108,7 +108,7 @@ const Homepage = () => {
       </div>
 
       {/* Gaming Text */}
-      <h1 className="text-white font-[Zentry] text-center text-[8rem] lg:text-[10rem] absolute -bottom-10 right-0 z-[0] font-bold">Gaming</h1>
+      <h1 className="text-white font-[Zentry] text-center text-[8rem] lg:text-[10rem] absolute bottom-12 right-0 z-[0] font-bold">Gaming</h1>
     </div>
   );
 };
