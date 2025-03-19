@@ -37,7 +37,7 @@ const Page3 = () => {
   return (
     <div
       ref={sectionRef}
-      className="h-screen w-full flex flex-col items-center page3 mt-5 relative"
+      className=" w-full  flex flex-col items-center page3 mt-5 relative"
     >
       <div
         id="box2"
